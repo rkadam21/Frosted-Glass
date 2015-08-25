@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>DTAT.WORK - Scams in India </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- CSS
+================================================== -->
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/bootstrap-responsive.css">
+<link rel="stylesheet" href="css/prettyPhoto.css" />
+<link rel="stylesheet" href="css/custom-styles.css">
+
+<!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <link rel="stylesheet" href="css/style-ie.css"/>
+<![endif]--> 
+
+<!-- Favicons
+================================================== -->
+<link rel="shortcut icon" href="img/favicon.ico">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+
+<!-- JS
+================================================== -->
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+<script src="js/jquery.quicksand.js"></script>
+<script src="js/jquery.custom.js"></script>
+
+</head>
+
+<body>
+	<div class="color-bar-1"></div>
+    <div class="color-bar-2 color-bg"></div>
+    
+    <div class="container main-container">
+    
+      <div class="row header"><!-- Begin Header -->
+      
+        <!-- Logo
+        ================================================== -->
+        <div class="span5 logo" id="top">
+        	<a href="index.htm"><h1>FROSTED GLASS</h1></a>
+            <h5>from the sandbox of deb tripathi  <br>[data, algorithms, pencil and camera works]</h5>
+        </div>
+
+       
+        <!-- Main Navigation
+        ================================================== -->
+        <div class="span7 navigation">
+            <div class="navbar">
+            
+            <ul class="nav">
+           <li class="active"><a href="index.htm#top">Home</a></li>
+            <li><a href="#footer">About Deb</a></li>
+            </ul>
+           
+            </div>
+
+
+            
+        </div>
+
+      </div><!-- End Header -->
+   
+    <!-- Page Content
+    ================================================== --> 
+
+
+    <div class="row">
+
+    <div class="span3" id="wowdesc1">
+        <span class="project-details"><h5>The Billion Rupee Scamgram</h5><p>India must truly be the Treasure Island, as corruption reaches galactic proportions. The explosion of scams in the last 30 years are nothing short of a big bang, with the scams of 2010s misappropriating funds tens of thousands of times in comparison to their 80s counterparts. The first 3 years of the current decade has already seen more than 4 times as much as the last decade.</p>
+        <p>The size of the bubbles indicate the amount of misappropriated funds. All amounts are inflation adjusted. </p>
+        </span>
+
+    </div> 
+
+        <div class="span6" id="wow1">
+ 
+
+        </div>
+
+
+    </div><!-- End container row -->
+    
+    </div> <!-- End Container -->
+
+    <!-- Footer Area
+        ================================================== -->
+	<div class="footer-container" id="footer"><!-- Begin Footer -->
+    	<div class="container">
+        	<div class="row footer-row">
+                <div class="span3 footer-col">
+                    <h3>Hello, Nice to meet you!</h3>
+                   <img src="img/pic.png" class="img-circle" alt="Deb Tripathi" /><br>
+                                       <ul class="social-icons">
+                        <li><a href="https://www.facebook.com/deb.tripathi" class="social-icon facebook"></a></li>
+                      <li><a href="https://frostedglass.wordpress.com/" class="social-icon rss"></a></li>
+
+                    </ul>
+               </div>
+                   <div class="span9 footer-col">
+                                    <h6><p class="blog-summary">Browse around, enjoy the site and let me know if you hated it, liked it, or even loved it! I love doing visualizations, taking pictures and sketching potraits when I get time from other things that don't pay me enough and take all my time away. It's a chicken and egg story that I can certainly explain once I get a little time from some of it, which is highly improbable given the chicken and egg situation. But if you have a good idea that will potentially make millions of dollars and change the world forever, which needs skills like mine, please ping.</h6><br>
+                                    <h5>Deb Tripathi<br/>
+                                    Head of Ideas, Braindead Inc</h5></p>
+                      </div>
+                </div>
+            </div>
+
+            <div class="row"><!-- Begin Sub Footer -->
+                <div class="footer-col footer-sub">
+                    <div class="row no-margin">
+                        <div class="span6"><span class="centre">Copyright 2012 Piccolo Theme. All rights reserved.</span></div>
+                    </div>
+                </div>
+            </div><!-- End Sub Footer -->
+
+        </div>
+    </div><!-- End Footer -->
+
+    <!-- Scroll to Top -->  
+    <div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script type="text/javascript">
+
+
+var diameter = 800, format = d3.format(",d"),
+  color = d3.scale.category10();
+
+var padding = 1.5, // separation between same-color circles
+    clusterPadding = 6, // separation between different-color circles
+    maxRadius = 10;
+
+var mode = "All";
+var alpha;
+var nodes;
+var node;
+var force;
+var div = d3.select("#wow1").append("div")   
+    .attr("class", "tooltip")               
+    .style("opacity", 0);
+
+var radFactor = 12;
+
+
+d3.csv("data/bil-rupee.csv", function(csvData) { 
+
+  nodes = d3.values(csvData);
+
+var a2010s = nodes.filter(function (z){return (z.decade === "2010s");});
+var a2000s = nodes.filter(function (z){return (z.decade === "2000s");});
+var a1990s = nodes.filter(function (z){return (z.decade === "1990s");});
+var a1980s = nodes.filter(function (z){return (z.decade === "1980s");});
+
+ 
+
+var clusters = {"2010s":a2010s.reduce(function(prev, curr){return parseInt(prev.funds) > parseInt(curr.funds) ? prev : curr;}) ,
+              "2000s":a2000s.reduce(function(prev, curr){return parseInt(prev.funds) > parseInt(curr.funds) ? prev : curr;}) ,
+              "1990s":a1990s.reduce(function(prev, curr){return parseInt(prev.funds) > parseInt(curr.funds) ? prev : curr;}) ,
+              "1980s":a1980s.reduce(function(prev, curr){return parseInt(prev.funds) > parseInt(curr.funds) ? prev : curr;})};
+
+
+
+
+
+force = d3.layout.force()
+    .nodes(nodes)
+    .size([diameter, diameter/2])
+    .gravity(0.02)
+    .charge(0)
+    .on("tick", tick)
+    .start();
+
+console.log(nodes);
+
+var svg = d3.select("#wow1").append("svg")
+    .attr("width", diameter)
+    .attr("height", diameter/2) 
+    .attr("align", "left");
+
+var circle = svg.selectAll("circle")
+    .data(nodes)
+    .enter().append("circle")
+    .attr("r", function (d) {return d.funds/radFactor;})
+    .style("fill", function (d) {return color(d.decade);})
+    .style("stroke", "#ffffff")
+    .on("mouseover", function (d) {      
+                div.transition()        
+                .duration(200)      
+                .style("opacity", .9);      
+            
+    var tooltiphtml = "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'>"+d.scam+"</h4></div><div class='panel-body'><I><b>Rs " + d.funds+" mil</b><BR>"+d.decade+" </div></div>";
+
+        div.html(tooltiphtml)  
+                .style("left", (d3.event.pageX) + "px")     
+                .style("top", (d3.event.pageY - 28) + "px");    
+            })                  
+    .on("mouseout", function (d) {       
+            div.transition()        
+                .duration(500)      
+                .style("opacity", 0)})   
+    .call(force.drag);
+
+
+function tick(e) {
+  circle
+      .each(cluster(10 * e.alpha * e.alpha))
+      .each(collide(.5))
+      .attr("cx", function (d) { return d.x; })
+      .attr("cy", function (d) { return d.y; });
+}
+
+
+// Move d to be adjacent to the cluster node.
+function cluster(alpha) {
+  return function (d) {
+    var cluster = clusters[d.decade];
+    if (cluster === d) return;
+    var x = d.x - cluster.x,
+        y = d.y - cluster.y,
+        l = Math.sqrt(x * x + y * y),
+        r = (d.funds/radFactor + cluster.funds/radFactor) ;
+    if (l != r) {
+      l = (l - r) / l * alpha;
+      d.x -= x *= l;
+      d.y -= y *= l;
+      cluster.x += x;
+      cluster.y += y;
+    }
+  };
+}
+
+
+
+
+function collide(alpha) {
+  var quadtree = d3.geom.quadtree(nodes);
+  return function (d) {
+    var r = d.funds/radFactor + maxRadius + Math.max(padding, clusterPadding),
+        nx1 = d.x - r,
+        nx2 = d.x + r,
+        ny1 = d.y - r,
+        ny2 = d.y + r;
+    quadtree.visit(function(quad, x1, y1, x2, y2) {
+      if (quad.point && (quad.point !== d)) {
+        var x = d.x - quad.point.x,
+            y = d.y - quad.point.y,
+            l = Math.sqrt(x * x + y * y),
+            r = d.funds/radFactor + quad.point.funds/radFactor + (d.cluster === quad.point.cluster ? padding : clusterPadding);
+        if (l < r) {
+          l = (l - r) / l * alpha;
+          d.x -= x *= l;
+          d.y -= y *= l;
+          quad.point.x += x;
+          quad.point.y += y;
+        }
+      }
+      return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+    });
+  };
+}
+
+
+
+});
+
+
+
+
+
+
+        </script>
+    
+</body>
+</html>

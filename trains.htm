@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>DTAT.WORK - Busiest Stations in India </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- CSS
+================================================== -->
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/bootstrap-responsive.css">
+<link rel="stylesheet" href="css/prettyPhoto.css" />
+<link rel="stylesheet" href="css/custom-styles.css">
+
+<!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <link rel="stylesheet" href="css/style-ie.css"/>
+<![endif]--> 
+
+<!-- Favicons
+================================================== -->
+<link rel="shortcut icon" href="img/favicon.ico">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+
+<!-- JS
+================================================== -->
+<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+<script src="js/jquery.quicksand.js"></script>
+<script src="js/jquery.custom.js"></script>
+<script src="js/india-dist-geo-js"></script>
+  <style>
+    #map {
+      width: 700px;
+      height: 700px;
+    }
+
+    .info {
+      padding: 6px 8px;
+      font: 12px/14px Arial, Helvetica, sans-serif;
+      background: white;
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      border-radius: 5px;
+    }
+    .info h4 {
+      margin: 0 0 5px;
+      color: #777;
+    }
+
+    .legend {
+      text-align: left;
+      line-height: 18px;
+      color: #555;
+    }
+    .legend i {
+      width: 18px;
+      height: 18px;
+      float: left;
+      margin-right: 8px;
+      opacity: 0.7;
+    }
+    #Buttgrp {
+      top: 10px;
+        left: 60px;
+        text-align: left;
+
+      }
+  </style>
+</head>
+
+<body>
+	<div class="color-bar-1"></div>
+    <div class="color-bar-2 color-bg"></div>
+    
+    <div class="container main-container">
+    
+      <div class="row header"><!-- Begin Header -->
+      
+        <!-- Logo
+        ================================================== -->
+        <div class="span9 logo" id="top">
+        	<a href="index.htm"><h1>FROSTED GLASS</h1></a>
+            <h5>from the sandbox of deb tripathi [data, algorithms, pencil and camera works]</h5>
+        </div>
+
+       
+        <!-- Main Navigation
+        ================================================== -->
+        <div class="span3 navigation">
+            <div class="navbar">
+            
+            <ul class="nav">
+           <li class="active"><a href="index.htm#top">Home</a></li>
+            <li><a href="#footer">About Deb</a></li>
+            </ul>
+           
+            </div>
+
+
+            
+        </div>
+
+      </div><!-- End Header -->
+   
+    <!-- Page Content
+    ================================================== --> 
+
+
+    <div class="row">
+
+    <div class="span12" id="wow2">
+
+
+<div id="Alltrains" align="float">
+<div class="span3" ><h5>Indian Railways - Key Junctions<br>
+  <font size=2>Mail, Express and Superfast trains only | source: indianrail.gov.in
+</div>       
+      
+
+<div id="filters" class="btn-group" data-toggle="buttons-radio" align="float">
+  <button type="button" class="btn btn-primary" id="All" >All</button>
+  <button type="button" class="btn btn-primary" id="Ten" > > 10 </button>
+  <button type="button" class="btn btn-primary" id="Twenty" > > 20 </button>
+  <button type="button" class="btn btn-primary" id="Forty" > > 40 </button><BR><BR>
+<div class="panel panel-default" style="opacity:0.8; width:200px;">
+  <font size=2>Filter based on # of trains originating from station. Drag nodes to stabilize. Hover on links for train details.
+
+</div>
+
+</div>
+
+
+</div>
+
+  </div>
+</div>
+        </div>
+
+
+    </div><!-- End container row -->
+    
+    </div> <!-- End Container -->
+
+    <!-- Footer Area
+        ================================================== -->
+	<div class="footer-container" id="footer"><!-- Begin Footer -->
+    	<div class="container">
+        	<div class="row footer-row">
+                <div class="span3 footer-col">
+                    <h3>Hello, Nice to meet you!</h3>
+                   <img src="img/pic.png" class="img-circle" alt="Deb Tripathi" /><br>
+                                       <ul class="social-icons">
+                        <li><a href="https://www.facebook.com/deb.tripathi" class="social-icon facebook"></a></li>
+                      <li><a href="https://frostedglass.wordpress.com/" class="social-icon rss"></a></li>
+
+                    </ul>
+               </div>
+                   <div class="span9 footer-col">
+                                    <h6><p class="blog-summary">Browse around, enjoy the site and let me know if you hated it, liked it, or even loved it! I love doing visualizations, taking pictures and sketching potraits when I get time from other things that don't pay me enough and take all my time away. It's a chicken and egg story that I can certainly explain once I get a little time from some of it, which is highly improbable given the chicken and egg situation. But if you have a good idea that will potentially make millions of dollars and change the world forever, which needs skills like mine, please ping.</h6><br>
+                                    <h5>Deb Tripathi<br/>
+                                    Head of Ideas, Braindead Inc</h5></p>
+                      </div>
+                </div>
+            </div>
+
+            <div class="row"><!-- Begin Sub Footer -->
+                <div class="footer-col footer-sub">
+                    <div class="row no-margin">
+                        <div class="span6"><span class="centre">Copyright 2012 Piccolo Theme. All rights reserved.</span></div>
+                    </div>
+                </div>
+            </div><!-- End Sub Footer -->
+
+        </div>
+    </div><!-- End Footer -->
+
+    <!-- Scroll to Top -->  
+    <div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>
+
+<script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script>
+
+var filterVal = 0;
+
+jQuery(function($) {
+$('#All').on('click', function (event) {
+event.preventDefault();
+
+filterVal = 0;
+filternodesandlinks();
+
+
+
+});
+
+$('#Ten').on('click', function (event) {
+event.preventDefault();
+
+filterVal = 10;
+filternodesandlinks();
+
+
+});
+
+$('#Twenty').on('click', function (event) {
+event.preventDefault();
+
+filterVal = 20;
+filternodesandlinks();
+
+
+});
+$('#Forty').on('click', function (event) {
+event.preventDefault();
+
+filterVal = 40;
+filternodesandlinks();
+
+
+});
+});
+
+
+var uniquestations = d3.map();
+var trainlinks = [];
+var graphnodes = [];
+var graph = [];
+var color = d3.scale.category20();
+
+var nodes, links, force;
+
+var seqno = 0;
+
+var div = d3.select("body").append("div")   
+    .attr("class", "tooltip")               
+    .style("opacity", 0);     
+
+
+d3.csv("data/mailexpsupfasttrains.csv", function(error, data) {
+
+    var nest = d3.nest()
+  .key(function(d) { return $.trim(d.FROM); })
+  .entries(data);
+
+nest.forEach(function(d) {
+
+  if (!uniquestations.has(d.key))
+  {
+    graphnodes.push({"name":d.key});
+    uniquestations.set(d.key,seqno);
+    seqno++;
+  }
+
+  var children = d.values;
+  children.forEach(function(e){
+
+    if (!uniquestations.has($.trim(e.TO)))
+    {
+      graphnodes.push({"name":$.trim(e.TO)});
+      uniquestations.set($.trim(e.TO),seqno);
+      seqno++;
+    }
+
+  });
+
+});
+
+nest.forEach(function(d,i) {
+  var children = d.values;
+
+  children.forEach(function(e){
+
+  trainlinks.push({"source":uniquestations.get($.trim(e.FROM)), "target":uniquestations.get($.trim(e.TO)), "from":$.trim(e.FROM), "to":$.trim(e.TO), "train":e.TRAIN,  "departure":e.DEP, "arrival":e.ARR});
+
+  });
+});
+
+console.log(trainlinks);
+          var width = 750,
+                height = 700;
+
+            force = d3.layout.force()
+                .size([width, height])
+                .nodes(graphnodes)
+                .links(trainlinks)
+                .linkDistance(30)
+    .gravity(3)
+    .friction(1)
+                .charge(-3000)
+                .start();
+
+            var svgtrains = d3.select("#Alltrains").append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+            links =
+                svgtrains.selectAll(".link")
+                    .data(trainlinks)
+                    .enter().append("line")
+       // .filter(function(d) { return (+d.target.weight > 20 && +d.source.weight > 20) ; })
+                  .attr("fill","black")
+                    .attr("class", "link")
+    .style("stroke-width", 2)
+    .attr("stroke","#AAAAAA")
+    .style("opacity", 0.2)
+      .on("mouseover", function(d) { 
+
+    if (+d.target.weight > filterVal && +d.source.weight > filterVal) {
+    var tooltiphtml = "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'>Train #"+d.train+"</h3></div><div class='panel-body'></B><I>From " + d.from+" to "+d.to+" <BR>DEP:"+d.departure+" ARR:"+d.arrival+"</div></div>";
+    
+    d3.select(this).style("opacity", 1).attr("stroke","#222222");   
+      
+     
+              div.transition()        
+                .duration(200)      
+                .style("opacity", .9);      
+            
+    div.html(tooltiphtml)  
+                .style("left", (d3.event.pageX + 10) + "px")     
+                .style("top", (d3.event.pageY - 28) + "px");    
+    }
+    
+            })                  
+       .on("mouseout", function(d) {  
+    if (+d.target.weight > filterVal && +d.source.weight > filterVal) {  
+      d3.select(this).style("opacity", 0.2).attr("stroke","#AAAAAA");  
+
+
+              div.transition()        
+                .duration(500)      
+                .style("opacity", 0);
+
+    }
+    });   
+
+    var node_drag = d3.behavior.drag()
+        .on("dragstart", dragstart)
+        .on("drag", dragmove)
+        .on("dragend", dragend);
+
+    function dragstart(d, i) {
+        force.stop() // stops the force auto positioning before you start dragging
+    }
+
+    function dragmove(d, i) {
+        d.px += d3.event.dx;
+        d.py += d3.event.dy;
+        d.x += d3.event.dx;
+        d.y += d3.event.dy; 
+        tick(); // this is the key to make it work together with updating both px,py,x,y on d !
+    }
+
+    function dragend(d, i) {
+        d.fixed = true; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
+        tick();
+        force.resume();
+    }
+
+
+            nodes =
+                svgtrains.selectAll(".node")
+                    .data(graphnodes)
+                    .enter().append("circle")
+        //.filter(function(d) { return +d.weight > 20; })
+                    .attr("class", "node")
+          .attr("cx", function (d){ return d.x; })
+         .attr ("cy", function (d) { return d.y; })
+      .attr("fill",function (d) { return color(d.weight); })
+      .attr("stroke","#333333")
+                    .attr("r", function (d) { return d.weight/5; })
+                    .call(node_drag);
+
+  nodes.append("title")
+    .text(function(d) { return d.name; });
+
+            force.on("tick", tick);
+
+function tick() {
+ 
+               links.attr("x1", function (d) { return d.source.x; })
+                    .attr("y1", function (d) { return d.source.y; })
+                    .attr("x2", function (d) { return d.target.x; })
+                    .attr("y2", function (d) { return d.target.y; });
+
+
+
+                nodes.attr("cx", function (d) { return d.x; })
+                    .attr("cy", function (d) { return d.y; });
+
+}
+
+
+
+
+
+
+});
+
+function filternodesandlinks(){
+
+d3.selectAll("circle").style("opacity", 0);
+d3.selectAll("line").style("opacity", 0);
+
+d3.selectAll("circle").filter(function(d) { return +d.weight > filterVal; }).style("opacity", 1);
+d3.selectAll("line").filter(function(d) { return (+d.target.weight > filterVal && +d.source.weight > filterVal) ; }).style("opacity", 0.2);
+
+
+force.resume();
+}
+
+
+
+
+
+</script>
+
+    
+</body>
+</html>
